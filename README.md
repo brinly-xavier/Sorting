@@ -23,7 +23,11 @@ b. Stephen White
 a. quick sort and array printing:
 https://www.geeksforgeeks.org/quick-sort/
 
+b. insertion sort:
+https://www.softwaretestinghelp.com/insertion-sort/
 
+c. merge sort:
+https://www.geeksforgeeks.org/merge-sort/
 
 
 5. INSTRUCTIONS FOR RUNNING THE ASSIGNMENT

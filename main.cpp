@@ -11,12 +11,16 @@ Sorting Assignment: 06
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
+#include <chrono> 
+#include <ctime> 
 
+using namespace std;
+using namespace std::chrono;
 //string filename;
 int sortNum;
 string answer;
 int main(int argc, char **argv){
+    auto timenow = chrono::system_clock::to_time_t(chrono::system_clock::now()); 
     string filename = argv[1]; 
     ifstream exlist;
     string line;
@@ -29,6 +33,7 @@ int main(int argc, char **argv){
     else
     {
         throw runtime_error("The file you entered could not be opened. Try again Later.");
+        return 0;
     }
     
     string sNum = "";
@@ -39,6 +44,7 @@ int main(int argc, char **argv){
     double* selectArray = new double[sortNum];
     double* insertArray = new double[sortNum];
     double* quickArray = new double[sortNum];
+    double* mergeArray = new double[sortNum];
     //initialize the array
     Sort sorting;
     
@@ -51,26 +57,44 @@ int main(int argc, char **argv){
         selectArray[i] = stod(line);
         insertArray[i] = stod(line);
         quickArray[i] = stod(line);
+        mergeArray[i] = stod(line);
         
     }
+    cout << "Start of bubble sort: " <<ctime(&timenow) << endl; 
     sorting.bubbleSort(bubbleArray, sortNum);
-    sorting.selectionSort(selectArray, sortNum);
-    sorting.insertSort(insertArray, sortNum);
-    //sorting.quickSort(quickArray, sortNum);
-    exlist.close();
-   
+    cout << "End of bubble sort: " <<ctime(&timenow) << endl; 
     cout<<"The Bubble Sort is: "<<endl;
     sorting.printArray(bubbleArray, sortNum);
-    
+    cout<<endl;
+
+    cout << "Start of selection sort: " <<ctime(&timenow) << endl; 
+    sorting.selectionSort(selectArray, sortNum);
+    cout << "End of selection sort: " <<ctime(&timenow) << endl; 
     cout<<"The Selection Sort is: "<<endl;
     sorting.printArray(selectArray, sortNum);
-    
+    cout<<endl;
+
+    cout << "Start of insert sort: " <<ctime(&timenow) << endl; 
+    sorting.insertSort(insertArray, sortNum);
+    cout << "End of insert sort: " <<ctime(&timenow) << endl;
     cout<<"The Insertion Sort is: "<<endl;
     sorting.printArray(insertArray, sortNum);
-
+    cout<<endl;
+    
+    cout << "Start of quick sort: " <<ctime(&timenow) << endl; 
+    sorting.quickSort(quickArray, 0, sortNum - 1);
+    cout << "End of quick sort: " <<ctime(&timenow) << endl;
     cout<<"The Quick Sort is: "<<endl;
     sorting.printArray(quickArray, sortNum);
+    cout<<endl;
+    
+    cout << "Start of insert sort: " <<ctime(&timenow) << endl; 
+    sorting.mergeSort(mergeArray, 0, sortNum - 1);
+    cout << "End of merge sort: " <<ctime(&timenow) << endl;
+    cout<<"The Merge Sort is: "<<endl;
+    sorting.printArray(mergeArray, sortNum);
+    cout<<endl; 
 
-
+    exlist.close();
     return 0;
 }
